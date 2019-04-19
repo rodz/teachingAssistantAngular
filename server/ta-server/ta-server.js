@@ -5,18 +5,24 @@ const bodyParser = require("body-parser");
 const cadastrodealunos_1 = require("./cadastrodealunos");
 var app = express();
 exports.app = app;
-var alunos = new cadastrodealunos_1.CadastroDeAlunos();
+var cadastro = new cadastrodealunos_1.CadastroDeAlunos();
+var allowCrossDomain = function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+};
+app.use(allowCrossDomain);
 app.use(bodyParser.json());
 app.get('/alunos', function (req, res) {
-    var aluno = JSON.stringify(alunos.getAlunos());
-    res.send(aluno);
+    console.log('GET /alunos: ' + req);
+    res.send(JSON.stringify(cadastro.getAlunos()));
 });
 app.post('/aluno', function (req, res) {
     var aluno = req.body; //verificar se é mesmo Aluno!
-    aluno = alunos.criar(aluno);
+    aluno = cadastro.criar(aluno);
     if (aluno) {
-        console.log(aluno.nome);
-        res.send({ "success": "O aluno foi cadastrado com sucesso", "nomeAluno": aluno.nome });
+        res.send({ "success": "O aluno foi cadastrado com sucesso" });
     }
     else {
         res.send({ "failure": "O aluno não pode ser cadastrado" });
@@ -24,7 +30,7 @@ app.post('/aluno', function (req, res) {
 });
 app.put('/aluno', function (req, res) {
     var aluno = req.body;
-    aluno = alunos.atualizar(aluno);
+    aluno = cadastro.atualizar(aluno);
     if (aluno) {
         res.send({ "success": "O aluno foi atualizado com sucesso" });
     }
