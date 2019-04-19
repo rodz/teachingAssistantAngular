@@ -15,8 +15,8 @@ app.post('/aluno', function (req, res) {
     var aluno = req.body; //verificar se é mesmo Aluno!
     aluno = alunos.criar(aluno);
     if (aluno) {
-        console.log(aluno.nome)
-        res.send({ "success": "O aluno foi cadastrado com sucesso" });
+        console.log(aluno.nome);
+        res.send({ "success": "O aluno foi cadastrado com sucesso", "nomeAluno": aluno.nome });
     }
     else {
         res.send({ "failure": "O aluno não pode ser cadastrado" });
