@@ -18,6 +18,18 @@ app.get('/alunos', function (req, res) {
     console.log('GET /alunos: ' + req);
     res.send(JSON.stringify(cadastro.getAlunos()));
 });
+app.delete('/delaluno', function (req, res) {
+    var aluno = req.body; //Pegar a variavel aluno recebida
+    console.log("Aluno recebeido");
+    console.log(JSON.stringify(aluno));
+    var del = cadastro.deletar(aluno.cpf);
+    if (del) {
+        res.send({ "success": "O aluno foi deletado com sucesso" });
+    }
+    else {
+        res.send({ "failure": "O aluno não pode ser deletado" });
+    }
+});
 app.post('/aluno', function (req, res) {
     var aluno = req.body; //verificar se é mesmo Aluno!
     aluno = cadastro.criar(aluno);

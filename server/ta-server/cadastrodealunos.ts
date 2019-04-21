@@ -25,6 +25,21 @@ export class CadastroDeAlunos {
     if (result) result.copyFrom(aluno);
     return result;
   }
+  deletar(id: string): boolean {
+    console.log("DELETANDO ALUNO");
+    console.log(id);
+    var i;
+    for(i=0; i<this.alunos.length; i=i+1){
+      if(this.alunos[i].cpf == id){
+        console.log(this.alunos.length)
+        console.log(i)
+        this.alunos.splice(i, 1);
+        console.log(this.alunos.length)
+        return true;
+      }
+    }
+    return false;
+  }
 
   getAlunos(): Aluno[] {
     return this.alunos;

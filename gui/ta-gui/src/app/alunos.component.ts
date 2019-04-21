@@ -30,6 +30,25 @@ export class AlunosComponent implements OnInit {
         .catch(erro => alert(erro));
    }
 
+   removerAluno(a: Aluno): void{
+      this.alunoService.remover(a)
+         .then(ab => {
+            if(ab){
+               this.retirarAluno(a.cpf);
+            }
+         })
+         .catch(erro => alert(erro));
+   }
+
+   retirarAluno(a: string): void{
+      for(var i = 0; i<this.alunos.length; i+=1){
+         if(this.alunos[i].cpf == a){
+            this.alunos.splice(i, 1);
+            break;
+         }
+      }
+   }
+
    onMove(): void {
       this.cpfduplicado = false;
       this.githubduplicado = false;
