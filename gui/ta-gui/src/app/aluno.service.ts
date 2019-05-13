@@ -23,15 +23,12 @@ export class AlunoService {
   }
 
   remover(aluno: Aluno): Promise<boolean>{
-    var r = confirm("Você tem certeza que quer remover o aluno "+ aluno.nome +" do sistema?");
-    if(r){
       return this.http.delete('http://localhost:3000/delaluno/', {headers: this.headers, body: JSON.stringify(aluno)})
       .toPromise()
       .then(res => {
         if (res.json().success) {return aluno;} else {return null;}
       })
       .catch(this.tratarErro);
-    }
   }
 
   atualizar(aluno: Aluno): Promise<Aluno> {

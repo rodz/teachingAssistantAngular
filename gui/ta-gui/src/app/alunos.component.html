@@ -3,20 +3,20 @@
 <table>
 <tr>
    <td><label>Nome </label></td>
-   <td><input [(ngModel)]="aluno.nome" ></td>
-   <td><button (click)="criarAluno(aluno)">Adicionar</button></td>
+   <td><input [(ngModel)]="aluno.nome" name="namebox" ></td>
+   <td name="addbuttom"><button (click)="criarAluno(aluno)">Adicionar</button></td>
 </tr>
 <tr>
    <td><label>CPF </label></td>
-   <td><input [(ngModel)]="aluno.cpf" ></td>
+   <td><input [(ngModel)]="aluno.cpf" name="cpfbox" ></td>
 </tr>
 <tr>
    <td><label>e-mail </label></td>
-   <td><input [(ngModel)]="aluno.email" ></td>
+   <td><input [(ngModel)]="aluno.email" name="emailbox" ></td>
 </tr>
 <tr>
    <td><label>GitHub </label></td>
-   <td><input [(ngModel)]="aluno.github" ></td>
+   <td><input [(ngModel)]="aluno.github" name="gitbox" ></td>
 </tr>
 </table>
 <td *ngIf="cpfduplicado || githubduplicado">
@@ -30,12 +30,12 @@
    <th>e-mail</th>
    <th>gitHub</th>
 </tr>
-<tr *ngFor="let a of alunos">
-   <td>{{a.nome}}</td>
-   <td>{{a.cpf}}</td>
-   <td>{{a.email}}</td>
-   <td>{{a.github}}</td>
-   <td><button (click)="removerAluno(a)">REMOVER</button></td>
+<tr *ngFor="let a of alunos" name="alunolist">
+   <td name="nomelist">{{a.nome}}</td>
+   <td name="cpflist">{{a.cpf}}</td>
+   <td name="emaillist">{{a.email}}</td>
+   <td name="gitlist">{{a.github}}</td>
+   <td name="rembuttom"><button (click)="removerAluno(a)">REMOVER</button></td>
 </tr>
 </table>
 
